@@ -45,7 +45,6 @@ input {
    object-position: 58%;
 }
 
-/* Elements */
 form {
    width: 100%;
    display: grid;
@@ -59,6 +58,9 @@ form {
 }
 #last-name {
    grid-column: 4 / span 2;
+}
+#mobile {
+   grid-column: 1 / span 4;
 }
 
 /* Responsive */
