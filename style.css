@@ -46,7 +46,18 @@ input {
 }
 
 /* Elements */
+form {
+   width: 100%;
+}
+
+.icon-and-input-container {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+}
+
 input[type='text'] {
+   width: 100%;
    padding: 8px;
    border-radius: 3px;
    color: #413f3f;
