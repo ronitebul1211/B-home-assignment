@@ -31,6 +31,9 @@ body {
 .content-container__form-container {
    flex: 1;
 }
+.content-container__form-container {
+   padding: 24px 26px;
+}
 
 .content-container__img-container img {
    width: 100%;
@@ -55,5 +58,6 @@ body {
    }
    .content-container__form-container {
       flex: 4;
+      padding: 24px 16px 16px 16px;
    }
 }
