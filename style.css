@@ -48,6 +48,15 @@ input {
 /* Elements */
 form {
    width: 100%;
+   display: grid;
+   grid-template-columns: 8px repeat(4, 1fr);
+   column-gap: 16px;
+   row-gap: 12px;
+}
+
+#first-name {
+   grid-column-start: 1;
+   grid-column-end: 4;
 }
 
 .icon-and-input-container {
