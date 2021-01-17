@@ -61,26 +61,6 @@ form {
    grid-column: 4 / span 2;
 }
 
-.icon-and-input-container {
-   display: flex;
-   align-items: center;
-   gap: 6px;
-}
-
-input[type='text'] {
-   font-size: 16px;
-   width: 100%;
-   padding: 8px;
-   border-radius: 3px;
-   color: #413f3f;
-   background: #f3f3f4;
-   outline: none;
-   border: none;
-}
-input[type='text']::placeholder {
-   color: #959595;
-}
-
 /* Responsive */
 @media only screen and (max-width: 750px) {
    .page-container {
