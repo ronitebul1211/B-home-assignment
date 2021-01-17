@@ -29,7 +29,8 @@ body {
 
 .content-container__img-container,
 .content-container__form-container {
-   flex: 1;
+   width: 50%;
+   height: 100%;
 }
 .content-container__form-container {
    padding: 24px 26px;
@@ -52,12 +53,15 @@ body {
       border: none;
       border-radius: unset;
    }
-
+   .content-container__img-container,
+   .content-container__form-container {
+      width: 100%;
+   }
    .content-container__img-container {
-      flex: 1;
+      height: 29%;
    }
    .content-container__form-container {
-      flex: 4;
-      padding: 24px 16px 16px 16px;
+      height: 71%;
+      padding: 24px 16px 16px;
    }
 }
