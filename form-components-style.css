@@ -110,3 +110,13 @@ input[type='number']::placeholder {
 .radio-custom:checked + .radio-custom-label:before {
    background: url(./assets/checkbox-checked.svg);
 }
+
+/* Input Type: Number - Hide arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+input[type='number'] {
+   -moz-appearance: textfield;
+}
