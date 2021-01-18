@@ -58,13 +58,13 @@ form {
    grid-column: 1 / span 3;
 }
 #last-name {
-   grid-column: 4 / span 2;
+   grid-column: 4 / span 3;
 }
 #mobile-number {
    grid-column: 1 / span 4;
 }
 #mobile-prefix {
-   grid-column: 5 / span 1;
+   grid-column: 5 / span 2;
 }
 #test {
    grid-column: 1 / span 3;
@@ -73,7 +73,10 @@ form {
    grid-column: 4 / span 2;
 }
 #btn-test {
-   grid-column: 2 / span 3;
+   grid-column: 2 / span 5;
+}
+#validation-code {
+   grid-column: 1 / span 6;
 }
 
 /* Responsive */
