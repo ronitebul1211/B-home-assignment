@@ -6,8 +6,7 @@
    margin: 0;
 }
 
-body,
-input {
+body {
    font-family: 'Rubik', sans-serif;
 }
 
@@ -24,9 +23,11 @@ input {
    margin: 0 auto;
    display: flex;
    background: #ffffff;
-   box-shadow: 0px 3px 20px #00000029;
    border: 1px solid #cecece;
    border-radius: 6px;
+   box-shadow: 0px 3px 20px #00000029;
+   -webkit-box-shadow: 0px 3px 20px #00000029;
+   -moz-box-shadow: 0px 3px 20px #00000029;
 }
 
 .content-container__img-container,
@@ -59,8 +60,11 @@ form {
 #last-name {
    grid-column: 4 / span 2;
 }
-#mobile {
+#mobile-number {
    grid-column: 1 / span 4;
+}
+#mobile-prefix {
+   grid-column: 5 / span 1;
 }
 
 /* Responsive */
