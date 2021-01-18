@@ -4,6 +4,8 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap"
@@ -56,7 +58,16 @@
 
                   <div id="validation-code" class="icon-and-input-container">
                      <img src="./assets/icon-checked-gray.svg" />
-                     <input type="text" placeholder="הכנס קוד אימות" />
+                     <input type="number" placeholder="הכנס קוד אימות" />
+                  </div>
+                  <div id="date-of-birth" class="icon-and-input-container">
+                     <img src="./assets/icon-birthday-cake-gray.svg" />
+                     <input
+                        type="text"
+                        class="date"
+                        placeholder="הכנס תאריך לידה"
+                        data-inputmask="'alias': 'date'"
+                     />
                   </div>
                </form>
             </div>

@@ -1,4 +1,8 @@
+// const inputmask = require('inputmask');
+
 $(document).ready(() => {
+   $(':input').inputmask('');
+
    // $('h1').hide();
    // $('button').click((event) => {
    //    console.log('click event');
