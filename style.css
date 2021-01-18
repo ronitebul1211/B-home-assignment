@@ -72,6 +72,9 @@ form {
 #test1 {
    grid-column: 4 / span 2;
 }
+#btn-test {
+   grid-column: 2 / span 3;
+}
 
 /* Responsive */
 @media only screen and (max-width: 750px) {

@@ -80,7 +80,6 @@ input[type='number']::placeholder {
 .radio-custom {
    opacity: 0;
    position: absolute;
-   font-weight: 500;
 }
 
 .radio-custom,
@@ -145,4 +144,39 @@ input[type='number'] {
 }
 .complete.mobile-input-wrapper:before {
    background-image: url('./assets/icon-checked-blue.svg');
+}
+
+/* Loading Button */
+.loading-button {
+   width: fit-content;
+   background-color: #0089ff;
+   border: none;
+   outline: none;
+   box-shadow: 0px 3px 20px #00000029;
+   border-radius: 18px;
+   padding: 9px 27px;
+   color: #ffffff;
+   font: inherit;
+   font-weight: 400;
+   font-size: 14px;
+   letter-spacing: 1.25px;
+   display: flex;
+}
+
+.loading-button .spinner {
+   border-top: 2px #ffffff solid;
+   border-right: 2px transparent solid;
+   border-radius: 50%;
+   width: 18px;
+   height: 18px;
+   animation-name: spinner;
+   animation-duration: 2s;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   margin-inline-start: 16px;
+}
+@keyframes spinner {
+   100% {
+      transform: rotate(360deg);
+   }
 }
