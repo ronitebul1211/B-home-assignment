@@ -98,7 +98,7 @@ input[type='number']::placeholder {
 
 .radio-custom + .radio-custom-label:before {
    content: '';
-   background: url(./assets/checkbox-unchecked.svg);
+   background: url(./assets/radio-unchecked.svg);
    display: inline-block;
    vertical-align: middle;
    width: 18px;
@@ -108,7 +108,7 @@ input[type='number']::placeholder {
 }
 
 .radio-custom:checked + .radio-custom-label:before {
-   background: url(./assets/checkbox-checked.svg);
+   background: url(./assets/radio-checked.svg);
 }
 
 /* Input Type: Number - Hide arrows */
@@ -119,4 +119,30 @@ input::-webkit-inner-spin-button {
 }
 input[type='number'] {
    -moz-appearance: textfield;
+}
+
+/* Mobile Input */
+.mobile-input-wrapper {
+   width: 100%;
+   position: relative;
+}
+.mobile-input-wrapper:before {
+   content: '';
+   position: absolute;
+   left: 0;
+   top: 50%;
+   width: 18px;
+   height: 18px;
+   margin-left: 8px;
+   transform: translateY(-50%);
+   -ms-transform: translateY(-50%);
+}
+.success.mobile-input-wrapper:before {
+   background-image: url('./assets/icon-checked-green.svg');
+}
+.invalid.mobile-input-wrapper:before {
+   background-image: url('./assets/icon-checked-red.svg');
+}
+.complete.mobile-input-wrapper:before {
+   background-image: url('./assets/icon-checked-blue.svg');
 }
