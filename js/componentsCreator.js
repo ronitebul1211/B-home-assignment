@@ -1,33 +1,41 @@
+/** Side icon */
 function generateFirstNameField(name, onChangeHandler) {
-   const wrapper = $('<div>', { id: 'first-name', class: 'input-with-icon-wrapper' });
-   const icon = $('<img>', { src: './assets/icon-user-gray.svg', alt: 'icon-user-gray' });
-   const input = generateTextInput('text', 'שם פרטי', onChangeHandler, name);
-   return wrapper.append([icon, input]);
+   const field = generateTextInput('first-name', name, 'text', 'שם פרטי', onChangeHandler);
+   return addSideIconToTextInput(field, './assets/icon-user-gray.svg');
 }
 
+/** Basic */
 function generateLastNameField(name, onChangeHandler) {
-   const wrapper = $('<div>', { id: 'last-name' });
-   const input = generateTextInput('text', 'שם משפחה', onChangeHandler, name);
-   wrapper.append(input);
-   return wrapper;
+   const field = generateTextInput('last-name', name, 'text', 'שם משפחה', onChangeHandler);
+   return field;
 }
 
+/** Validation */
 function generateMobileNumField(name, onChangeHandler) {
-   const wrapper = $('<div>', { id: 'mobile-number', class: 'input-with-icon-wrapper' });
-   const icon = $('<img>', { src: './assets/icon-phone-gray.svg', alt: 'icon-phone-gray' });
-   const input = generateTextInput('number', 'מספר נייד', onChangeHandler, name);
-   input.wrap($('<div>', { class: 'validation-input-wrapper' }));
-   const validationWrapper = input.parent();
-   return wrapper.append([icon, validationWrapper]);
+   // const wrapper = $('<div>', { id: 'mobile-number', class: 'input-with-icon-wrapper' });
+   // const icon = $('<img>', { src: './assets/icon-phone-gray.svg', alt: 'icon-phone-gray' });
+   // const input = generateTextInput('number', 'מספר נייד', onChangeHandler, name);
+   // input.wrap($('<div>', { class: 'validation-input-wrapper' }));
+   // const validationWrapper = input.parent();
+   // return wrapper.append([icon, validationWrapper]);
 }
 
-/** Generate Text Input */
-function generateTextInput(type, placeholder, onChangeHandler, name) {
+/** Generate Base Text Input */
+function generateTextInput(id, name, type, placeholder, onChangeHandler) {
+   const field = $('<div>', { id });
    const input = $('<input>', { type, placeholder });
    input.change(function () {
       onChangeHandler(name, $(this).val());
    });
-   return input;
+   return field.append(input);
+}
+
+/** Add Side Icon */
+function addSideIconToTextInput(field, iconSrc) {
+   field.addClass('input-with-icon-wrapper');
+   const icon = $('<img>', { src: iconSrc });
+   field.prepend(icon);
+   return field;
 }
 
 /** Render validator ui inside input field */
