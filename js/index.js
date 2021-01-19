@@ -27,7 +27,7 @@ function renderStageOne(signInForm) {
       }
    }
    function isStageFinish() {
-      return formState.firstName && formState.lastName;
+      return formState.firstName?.length > 2 && formState.lastName?.length > 2;
    }
 }
 

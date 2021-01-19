@@ -3,7 +3,7 @@ function generateTextInput(id, name, type, placeholder, onChangeHandler, inputMa
    const field = $('<div>', { id });
    const input = $('<input>', { type, placeholder });
    inputMask && input.attr('data-inputmask', inputMask) && input.inputmask('');
-   input.change(function () {
+   input.on('input', function () {
       onChangeHandler(name, $(this).val());
    });
    return field.append(input);
