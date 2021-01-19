@@ -1,27 +1,11 @@
-const formState = {
-   mobileNum: '',
-};
+const formState = {};
+let formStage = 1;
 
 //TODO : track stage state to prevent duplicate rendering
 
 $(document).ready(() => {
    const signInForm = $('#sign-in-form');
-
-   // renderStageOne(signInForm);
-
-   renderStageFive(signInForm);
-   // firstNameField.on('change', function (e) {
-
-   // });
-
-   // $('h1').hide();
-   // $('button').click((event) => {
-   //    console.log('click event');
-   //    console.log(event);
-   // });
-   // $('button').on('click', () => {
-   //    console.log('click event');
-   // });
+   renderStageOne(signInForm);
 });
 
 /** Stage One : Render : First Name Field, Last Name Field */
@@ -35,7 +19,12 @@ function renderStageOne(signInForm) {
    /** Functions */
    function onChangeHandler(name, value) {
       formState[name] = value;
-      isStageFinish() && renderStageTwo(signInForm);
+      if (formStage === 1) {
+         if (isStageFinish()) {
+            renderStageTwo(signInForm);
+            formStage = 2;
+         }
+      }
    }
    function isStageFinish() {
       return formState.firstName && formState.lastName;
@@ -88,7 +77,12 @@ function renderStageTwo(signInForm) {
       if (name === 'mobileNum') {
          renderValidator(mobileNumField, isValidMobileNum(value) ? 'success' : 'invalid');
       }
-      isStageFinish() && renderStageThree(signInForm);
+      if (formStage === 2) {
+         if (isStageFinish()) {
+            renderStageThree(signInForm);
+            formStage = 3;
+         }
+      }
    }
    function isStageFinish() {
       return formState.mobilePre === 'IL' && isValidMobileNum(formState.mobileNum);
@@ -124,7 +118,9 @@ function renderStageFour(signInForm, validateCodeButton) {
    /** Functions */
    $(validateCodeButton).on('click', async function () {
       renderLoader(validateCodeButton, true);
+      validateCodeButton.prop('disabled', true);
       await dummyValidateCode();
+      validateCodeButton.prop('disabled', false);
       renderLoader(validateCodeButton, false);
       renderStageFive(signInForm);
       validationCodeField.remove();
