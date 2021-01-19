@@ -86,6 +86,7 @@ input[type='number']::placeholder {
    cursor: pointer;
    font-weight: 500;
    font-size: 14px;
+   -webkit-tap-highlight-color: transparent;
 }
 
 .radio-custom-label {
