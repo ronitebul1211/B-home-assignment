@@ -21,7 +21,7 @@ function addValidationIndicatorToTextInput(field) {
    $(input).wrap($('<div>', { class: 'validation-input-wrapper' }));
 }
 
-/** Render validator ui inside input field */
+/** Render Validator inside Input Field */
 function renderValidator(field, validationStatus) {
    const validationWrapper = field.find('.validation-input-wrapper')[0];
    if (!validationWrapper) {
@@ -42,7 +42,8 @@ function renderValidator(field, validationStatus) {
    }
 }
 
-function generateMobilePrefixField(name, options, defaultValue, onChangeHandler) {
+/** Generate Custom Select Field */
+function generateCustomSelect(id, name, options, defaultValue, onChangeHandler) {
    const originalSelect = createSelectInput();
    const [selectWrapper, styledSelect, styledOptions] = createCustomizeSelect();
 
@@ -74,7 +75,7 @@ function generateMobilePrefixField(name, options, defaultValue, onChangeHandler)
 
    /** Functions */
    function createSelectInput() {
-      const selectInput = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
+      const selectInput = $('<select>', { name: 'mobile-prefix' });
       options.forEach((optionData) => {
          const option = $('<option>', { value: optionData.value, text: optionData.text });
          optionData.value === defaultValue && option.attr('selected', 'true');
@@ -84,7 +85,7 @@ function generateMobilePrefixField(name, options, defaultValue, onChangeHandler)
    }
    function createCustomizeSelect() {
       originalSelect.hide();
-      originalSelect.wrap($('<div>', { class: 'select-wrapper' }));
+      originalSelect.wrap($('<div>', { id, class: 'select-wrapper' }));
       const selectWrapper = originalSelect.parent();
 
       const styledSelect = $('<div>', { class: 'styled-select' });

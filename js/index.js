@@ -72,7 +72,8 @@ function renderStageTwo(signInForm) {
       },
    ];
    formState.mobilePre = 'IL'; // Default value
-   const selectMobilePrefixField = generateMobilePrefixField(
+   const selectMobilePrefixField = generateCustomSelect(
+      'mobile-prefix',
       'mobilePre',
       prefixOptions,
       formState.mobilePre,
