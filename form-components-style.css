@@ -118,11 +118,11 @@ input[type='number'] {
 }
 
 /* Mobile Input */
-.mobile-input-wrapper {
+.validation-input-wrapper {
    width: 100%;
    position: relative;
 }
-.mobile-input-wrapper:before {
+.validation-input-wrapper:before {
    content: '';
    position: absolute;
    left: 0;
@@ -133,13 +133,13 @@ input[type='number'] {
    transform: translateY(-50%);
    -ms-transform: translateY(-50%);
 }
-.success.mobile-input-wrapper:before {
+.success.validation-input-wrapper:before {
    background-image: url('./assets/icon-checked-green.svg');
 }
-.invalid.mobile-input-wrapper:before {
+.invalid.validation-input-wrapper:before {
    background-image: url('./assets/icon-checked-red.svg');
 }
-.complete.mobile-input-wrapper:before {
+.complete.validation-input-wrapper:before {
    background-image: url('./assets/icon-checked-blue.svg');
 }
 

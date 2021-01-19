@@ -1,38 +1,42 @@
 function generateFirstNameField(name, onChangeHandler) {
    const wrapper = $('<div>', { id: 'first-name', class: 'input-with-icon-wrapper' });
    const icon = $('<img>', { src: './assets/icon-user-gray.svg', alt: 'icon-user-gray' });
-   const input = $('<input>', { type: 'text', placeholder: 'שם פרטי' });
-   input.change(function () {
-      onChangeHandler(name, $(this).val());
-   });
+   const input = generateTextInput('text', 'שם פרטי', onChangeHandler, name);
    return wrapper.append([icon, input]);
 }
 
 function generateLastNameField(name, onChangeHandler) {
-   const input = $('<input>', { id: 'last-name', type: 'text', placeholder: 'שם משפחה' });
+   const wrapper = $('<div>', { id: 'last-name' });
+   const input = generateTextInput('text', 'שם משפחה', onChangeHandler, name);
+   wrapper.append(input);
+   return wrapper;
+}
+
+function generateMobileNumField(name, onChangeHandler) {
+   const wrapper = $('<div>', { id: 'mobile-number', class: 'input-with-icon-wrapper' });
+   const icon = $('<img>', { src: './assets/icon-phone-gray.svg', alt: 'icon-phone-gray' });
+   const input = generateTextInput('number', 'מספר נייד', onChangeHandler, name);
+   input.wrap($('<div>', { class: 'validation-input-wrapper' }));
+   const validationWrapper = input.parent();
+   return wrapper.append([icon, validationWrapper]);
+}
+
+/**  */
+function generateTextInput(type, placeholder, onChangeHandler, name) {
+   const input = $('<input>', { type, placeholder });
    input.change(function () {
       onChangeHandler(name, $(this).val());
    });
    return input;
 }
 
-function generateMobileNumField(onChangeHandler) {
-   const wrapper = $('<div>', { id: 'mobile-number', class: 'input-with-icon-wrapper' });
-   const icon = $('<img>', { src: './assets/icon-phone-gray.svg', alt: 'icon-phone-gray' });
-   const input = $('<input>', { type: 'number', placeholder: 'מספר נייד' });
-   input.change((e) => {
-      onChangeHandler(e.target.value);
-   });
-   return wrapper.append([icon, input]);
-}
-
-function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
+function generateMobilePrefixField(name, options, defaultValue, onChangeHandler) {
    const originalSelect = createSelectInput();
    const [selectWrapper, styledSelect, styledOptions] = createCustomizeSelect();
 
    /** Event Handler */
    originalSelect.change(function () {
-      onChangeHandler($(this).val());
+      onChangeHandler(name, $(this).val());
    });
 
    styledSelect.click(function (e) {
