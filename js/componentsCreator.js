@@ -1,9 +1,3 @@
-/** Basic */
-function generateLastNameField(name, onChangeHandler) {
-   const field = generateTextInput('last-name', name, 'text', 'שם משפחה', onChangeHandler);
-   return field;
-}
-
 /** Validation */
 function generateMobileNumField(name, onChangeHandler) {
    const field = generateTextInput('mobile-number', name, 'number', 'מספר נייד', onChangeHandler);

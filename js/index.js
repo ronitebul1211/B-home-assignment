@@ -25,11 +25,10 @@ $(document).ready(() => {
 
 /** Stage One : Render : First Name Field, Last Name Field */
 function renderStageOne(signInForm) {
-   // First Name Field
+   /** Create, Render UI */
    const firstNameField = generateTextInput('first-name', 'firstName', 'text', 'שם פרטי', onChangeHandler);
    addSideIconToTextInput(firstNameField, './assets/icon-user-gray.svg');
-
-   const lastNameField = generateLastNameField('lastName', onChangeHandler);
+   const lastNameField = generateTextInput('last-name', 'lastName', 'text', 'שם משפחה', onChangeHandler);
    signInForm.append([firstNameField, lastNameField]);
 
    /** Functions */
