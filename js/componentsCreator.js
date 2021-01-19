@@ -28,14 +28,8 @@ function generateMobileNumField(onChangeHandler) {
 
 function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
    // Render original select
-   const originalSelect = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
-   options.forEach((optionData) => {
-      const option = $('<option>', { value: optionData.value, text: optionData.text });
-      optionData.value === defaultValue && option.attr('selected', 'true');
-      originalSelect.append(option);
-   });
+   const originalSelect = renderSelectInput();
 
-   ///////////////////////////////////////////////////////
    /** Hide original select element, create styled div that act as select, wrap both in select wrapper */
 
    originalSelect.hide();
@@ -88,6 +82,16 @@ function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
    originalSelect.change(function (e) {
       onChangeHandler($(this).val());
    });
+
+   function renderSelectInput() {
+      const selectInput = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
+      options.forEach((optionData) => {
+         const option = $('<option>', { value: optionData.value, text: optionData.text });
+         optionData.value === defaultValue && option.attr('selected', 'true');
+         selectInput.append(option);
+      });
+      return selectInput;
+   }
 
    const wrapperRef = originalSelect.parent();
    return wrapperRef;
