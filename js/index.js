@@ -96,9 +96,10 @@ function renderStageTwo(signInForm) {
 
 /** Stage Three : Render : Button -> validate mobile number */
 function renderStageThree(signInForm) {
-   const validateCodeButton = generateLoadingButton(onClickHandler);
+   /** Create, Render UI */
+   const validateCodeButton = generateLoadingButton('btn-test', 'אמת מספר', onClickHandler);
    signInForm.append(validateCodeButton);
-
+   /** Functions */
    function onClickHandler() {
       renderStageFour(signInForm, validateCodeButton);
    }

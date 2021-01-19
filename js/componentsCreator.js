@@ -109,14 +109,14 @@ function generateCustomSelect(id, name, options, defaultValue, onChangeHandler) 
    return selectWrapper;
 }
 
-function generateLoadingButton(onClickHandler) {
-   const button = $('<button>', { id: 'btn-test', class: 'loading-button' });
-   const text = $('<span>', { text: 'אמת מספר' });
+function generateLoadingButton(id, text, onClickHandler) {
+   const button = $('<button>', { id, class: 'loading-button' });
+   const textSpan = $('<span>', { text });
    const spinner = $('<span>', { class: 'spinner' });
    spinner.hide();
    button.click(function (e) {
       e.preventDefault();
       onClickHandler();
    });
-   return button.append([text, spinner]);
+   return button.append([textSpan, spinner]);
 }
