@@ -101,16 +101,15 @@ function renderStageThree(signInForm) {
    signInForm.append(validateCodeButton);
    /** Functions */
    function onClickHandler() {
-      renderStageFour(signInForm, validateCodeButton);
       validateCodeButton.off();
+      renderStageFour(signInForm, validateCodeButton);
    }
 }
 
 /** Stage Four : Render : Validation Code Input, Button -> validate mobile number */
 function renderStageFour(signInForm, validateCodeButton) {
    /** Create, Render UI */
-   validateCodeButton.attr('disabled', true);
-
+   validateCodeButton.prop('disabled', true);
    const validationCodeField = generateTextInput(
       'validation-code',
       'validationCode',
@@ -122,7 +121,23 @@ function renderStageFour(signInForm, validateCodeButton) {
    validationCodeField.insertBefore(validateCodeButton);
 
    /** Functions */
-   function onChangeHandler() {
-      console.log('ffsdfsd');
+   $(validateCodeButton).on('click', async function () {
+      renderLoader(validateCodeButton, true);
+      await dummyValidateCode();
+      renderLoader(validateCodeButton, false);
+      renderStageFive(signInForm);
+      validationCodeField.remove();
+      validateCodeButton.remove();
+   });
+   function onChangeHandler(name, value) {
+      name === 'validationCode' && value.length === 4 && validateCodeButton.prop('disabled', false);
    }
+   function dummyValidateCode() {
+      return new Promise((resolve) => setTimeout(resolve, 5000));
+   }
+}
+
+/** Stage Five : Render :  */
+function renderStageFive(signInForm) {
+   console.log('renderStageFive');
 }

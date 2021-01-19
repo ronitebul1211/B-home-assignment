@@ -120,3 +120,9 @@ function generateLoadingButton(id, text, onClickHandler) {
    });
    return button.append([textSpan, spinner]);
 }
+
+/** Render Loader inside Loading Button */
+function renderLoader(button, isLoading) {
+   const spinner = button.find('.spinner')[0];
+   isLoading ? $(spinner).show() : $(spinner).hide();
+}
