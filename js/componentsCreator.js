@@ -1,7 +1,8 @@
 /** Side icon */
 function generateFirstNameField(name, onChangeHandler) {
    const field = generateTextInput('first-name', name, 'text', 'שם פרטי', onChangeHandler);
-   return addSideIconToTextInput(field, './assets/icon-user-gray.svg');
+   addSideIconToTextInput(field, './assets/icon-user-gray.svg');
+   return field;
 }
 
 /** Basic */
@@ -12,15 +13,13 @@ function generateLastNameField(name, onChangeHandler) {
 
 /** Validation */
 function generateMobileNumField(name, onChangeHandler) {
-   // const wrapper = $('<div>', { id: 'mobile-number', class: 'input-with-icon-wrapper' });
-   // const icon = $('<img>', { src: './assets/icon-phone-gray.svg', alt: 'icon-phone-gray' });
-   // const input = generateTextInput('number', 'מספר נייד', onChangeHandler, name);
-   // input.wrap($('<div>', { class: 'validation-input-wrapper' }));
-   // const validationWrapper = input.parent();
-   // return wrapper.append([icon, validationWrapper]);
+   const field = generateTextInput('mobile-number', name, 'number', 'מספר נייד', onChangeHandler);
+   addSideIconToTextInput(field, './assets/icon-phone-gray.svg');
+   addValidationIndicatorToTextInput(field);
+   return field;
 }
 
-/** Generate Base Text Input */
+/** Generate Base Text Input Field */
 function generateTextInput(id, name, type, placeholder, onChangeHandler) {
    const field = $('<div>', { id });
    const input = $('<input>', { type, placeholder });
@@ -30,12 +29,17 @@ function generateTextInput(id, name, type, placeholder, onChangeHandler) {
    return field.append(input);
 }
 
-/** Add Side Icon */
+/** Add Side Icon Text Input Field */
 function addSideIconToTextInput(field, iconSrc) {
    field.addClass('input-with-icon-wrapper');
    const icon = $('<img>', { src: iconSrc });
    field.prepend(icon);
-   return field;
+}
+
+/** Add Validation Indicator Into Text Input Field */
+function addValidationIndicatorToTextInput(field) {
+   const input = field.find('input')[0];
+   $(input).wrap($('<div>', { class: 'validation-input-wrapper' }));
 }
 
 /** Render validator ui inside input field */
