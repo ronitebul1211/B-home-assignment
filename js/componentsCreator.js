@@ -27,63 +27,37 @@ function generateMobileNumField(onChangeHandler) {
 }
 
 function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
-   // Render original select
-   const originalSelect = renderSelectInput();
-
-   /** Hide original select element, create styled div that act as select, wrap both in select wrapper */
-
-   originalSelect.hide();
-   originalSelect.wrap('<div class="select-wrapper"></div>');
-   originalSelect.after('<div class="styled-select"></div>');
-
-   /** Set text in styled select of selected option (default : first option)  */
-   const styledSelect = originalSelect.next('div.styled-select');
-   $('<span>', { text: originalSelect.find(':selected').text() }).appendTo(styledSelect);
-   $('<img>', { src: './assets/icon-point-down-arrow.svg' }).appendTo(styledSelect);
-
-   /** Create list element inside select wrapper to contain styled options */
-   const styledOptions = $('<ul />', {
-      class: 'styled-options',
-   }).insertAfter(styledSelect);
-
-   originalSelect.children('option').each(function () {
-      const currentOption = $(this);
-      $('<li />', {
-         text: currentOption.text(),
-         value: currentOption.val(),
-      }).appendTo(styledOptions);
-   });
+   const originalSelect = createSelectInput();
+   const [selectWrapper, styledSelect, styledOptions] = createCustomizeSelect();
 
    /** Event Handler */
+   originalSelect.change(function () {
+      onChangeHandler($(this).val());
+   });
+
    styledSelect.click(function (e) {
       e.stopPropagation();
-      styledSelect.toggleClass('active');
+      $(this).toggleClass('active');
       styledOptions.toggle();
    });
 
    styledOptions.children().click(function (e) {
       e.stopPropagation();
-      const styledOptionItem = $(this);
-      styledSelect.children('span').text(styledOptionItem.text());
-      styledSelect.removeClass('active');
-      styledOptions.hide();
+      hideStyledOptions();
+      styledSelect.children('span').text($(this).text());
       originalSelect.find(':selected').removeAttr('selected');
       originalSelect
-         .find(`[value="${styledOptionItem.attr('value')}"]`)
+         .find(`[value="${$(this).attr('value')}"]`)
          .attr('selected', 'true')
          .trigger('change');
    });
 
    $(document).click(function () {
-      styledSelect.removeClass('active');
-      styledOptions.hide();
+      hideStyledOptions();
    });
 
-   originalSelect.change(function (e) {
-      onChangeHandler($(this).val());
-   });
-
-   function renderSelectInput() {
+   /** Functions */
+   function createSelectInput() {
       const selectInput = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
       options.forEach((optionData) => {
          const option = $('<option>', { value: optionData.value, text: optionData.text });
@@ -92,7 +66,28 @@ function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
       });
       return selectInput;
    }
+   function createCustomizeSelect() {
+      originalSelect.hide();
+      originalSelect.wrap($('<div>', { class: 'select-wrapper' }));
+      const selectWrapper = originalSelect.parent();
 
-   const wrapperRef = originalSelect.parent();
-   return wrapperRef;
+      const styledSelect = $('<div>', { class: 'styled-select' });
+      styledSelect.append($('<span>', { text: originalSelect.find(':selected').text() }));
+      styledSelect.append($('<img>', { src: './assets/icon-point-down-arrow.svg' }));
+
+      const styledOptions = $('<ul />', { class: 'styled-options' });
+      options.forEach(({ value, text }) => {
+         const styledOption = $('<li />', { text, value });
+         styledOptions.append(styledOption);
+      });
+
+      selectWrapper.append([styledSelect, styledOptions]);
+
+      return [selectWrapper, styledSelect, styledOptions];
+   }
+   function hideStyledOptions() {
+      styledSelect.removeClass('active');
+      styledOptions.hide();
+   }
+   return selectWrapper;
 }
