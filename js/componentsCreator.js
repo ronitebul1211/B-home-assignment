@@ -1,7 +1,8 @@
 /** Generate Base Text Input Field */
-function generateTextInput(id, name, type, placeholder, onChangeHandler) {
+function generateTextInput(id, name, type, placeholder, onChangeHandler, inputMask) {
    const field = $('<div>', { id });
    const input = $('<input>', { type, placeholder });
+   inputMask && input.attr('data-inputmask', inputMask) && input.inputmask('');
    input.change(function () {
       onChangeHandler(name, $(this).val());
    });

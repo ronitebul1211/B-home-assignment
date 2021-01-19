@@ -13,7 +13,6 @@ $(document).ready(() => {
    // firstNameField.on('change', function (e) {
 
    // });
-   $(':input').inputmask('');
 
    // $('h1').hide();
    // $('button').click((event) => {
@@ -159,7 +158,16 @@ function renderStageFive(signInForm) {
       'ממלא עבור קטין',
       onChangeHandler,
    );
-   signInForm.append([firstRadio, secondRadio]);
+   const dateOfBirthField = generateTextInput(
+      'date-of-birth',
+      'dateOfBirth',
+      'text',
+      'הכנס תאריך לידה',
+      onChangeHandler,
+      "'alias': 'date'",
+   );
+   addSideIconToTextInput(dateOfBirthField, './assets/icon-birthday-cake-gray.svg');
+   signInForm.append([firstRadio, secondRadio, dateOfBirthField]);
 
    /** Functions */
    function onChangeHandler(name, value) {
