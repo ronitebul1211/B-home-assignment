@@ -182,7 +182,7 @@ input[type='number'] {
 
 /* Date */
 
-.date::selection {
+input[data-inputmask="'alias': 'date'"]::selection {
    text-align: start;
    direction: ltr;
    -webkit-touch-callout: none; /* iOS Safari */

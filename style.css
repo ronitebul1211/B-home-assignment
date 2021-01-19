@@ -66,12 +66,7 @@ form {
 #mobile-prefix {
    grid-column: 15 / 20;
 }
-#first-radio {
-   grid-column: 1 / 9;
-}
-#second-radio {
-   grid-column: 9 / 20;
-}
+
 #btn-validation {
    grid-column: 2 / 20;
 }
@@ -81,6 +76,14 @@ form {
 
 #date-of-birth {
    grid-column: 1 / 20;
+}
+
+#radio-group {
+   grid-column: 1 / 20;
+   display: flex;
+}
+#radio-group > div:first-child {
+   margin-inline-end: 16px;
 }
 
 /* Responsive */

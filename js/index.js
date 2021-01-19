@@ -5,7 +5,8 @@ let formStage = 1;
 
 $(document).ready(() => {
    const signInForm = $('#sign-in-form');
-   renderStageOne(signInForm);
+   // renderStageOne(signInForm);
+   renderStageFive(signInForm);
 });
 
 /** Stage One : Render : First Name Field, Last Name Field */
@@ -154,6 +155,8 @@ function renderStageFive(signInForm) {
       'ממלא עבור קטין',
       onChangeHandler,
    );
+   const radiosWrapper = $('<div>', { id: 'radio-group' });
+   radiosWrapper.append([firstRadio, secondRadio]);
    const dateOfBirthField = generateTextInput(
       'date-of-birth',
       'dateOfBirth',
@@ -163,7 +166,7 @@ function renderStageFive(signInForm) {
       "'alias': 'date'",
    );
    addSideIconToTextInput(dateOfBirthField, './assets/icon-birthday-cake-gray.svg');
-   signInForm.append([firstRadio, secondRadio, dateOfBirthField]);
+   signInForm.append([radiosWrapper, dateOfBirthField]);
 
    /** Functions */
    function onChangeHandler(name, value) {
