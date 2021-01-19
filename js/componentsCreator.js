@@ -1,11 +1,3 @@
-/** Validation */
-function generateMobileNumField(name, onChangeHandler) {
-   const field = generateTextInput('mobile-number', name, 'number', 'מספר נייד', onChangeHandler);
-   addSideIconToTextInput(field, './assets/icon-phone-gray.svg');
-   addValidationIndicatorToTextInput(field);
-   return field;
-}
-
 /** Generate Base Text Input Field */
 function generateTextInput(id, name, type, placeholder, onChangeHandler) {
    const field = $('<div>', { id });
@@ -35,6 +27,9 @@ function renderValidator(field, validationStatus) {
    if (!validationWrapper) {
       throw Error("Can't render validator on input without validation wrapper");
    }
+
+   $(validationWrapper).removeClass();
+   $(validationWrapper).addClass('validation-input-wrapper');
 
    switch (validationStatus) {
       case 'success':

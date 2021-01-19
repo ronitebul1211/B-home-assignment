@@ -43,8 +43,16 @@ function renderStageOne(signInForm) {
 
 /** Stage Two : Render : Mobile Number Field, Mobile Prefix Field */
 function renderStageTwo(signInForm) {
-   const mobileNumField = generateMobileNumField('mobileNum', onChangeHandler);
-
+   /** Create, Render UI */
+   const mobileNumField = generateTextInput(
+      'mobile-number',
+      'mobileNum',
+      'number',
+      'מספר נייד',
+      onChangeHandler,
+   );
+   addSideIconToTextInput(mobileNumField, './assets/icon-phone-gray.svg');
+   addValidationIndicatorToTextInput(mobileNumField);
    const prefixOptions = [
       {
          value: 'IS',
@@ -76,9 +84,7 @@ function renderStageTwo(signInForm) {
    function onChangeHandler(name, value) {
       formState[name] = value;
       if (name === 'mobileNum') {
-         isValidMobileNum(value)
-            ? renderValidator(mobileNumField, 'success')
-            : renderValidator(mobileNumField, 'invalid');
+         renderValidator(mobileNumField, isValidMobileNum(value) ? 'success' : 'invalid');
       }
       isStageFinish() && renderStageThree(signInForm);
    }
