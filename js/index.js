@@ -109,6 +109,8 @@ function renderStageThree(signInForm) {
 /** Stage Four : Render : Validation Code Input, Button -> validate mobile number */
 function renderStageFour(signInForm, validateCodeButton) {
    /** Create, Render UI */
+   validateCodeButton.attr('disabled', true);
+
    const validationCodeField = generateTextInput(
       'validation-code',
       'validationCode',
@@ -118,7 +120,6 @@ function renderStageFour(signInForm, validateCodeButton) {
    );
    addSideIconToTextInput(validationCodeField, './assets/icon-checked-gray.svg');
    validationCodeField.insertBefore(validateCodeButton);
-   // signInForm.append([validationCodeField]);
 
    /** Functions */
    function onChangeHandler() {

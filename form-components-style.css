@@ -159,7 +159,9 @@ input[type='number'] {
    letter-spacing: 1.25px;
    display: flex;
 }
-
+.loading-button:disabled {
+   background: #5eaff2;
+}
 .loading-button .spinner {
    border-top: 2px #ffffff solid;
    border-right: 2px transparent solid;
