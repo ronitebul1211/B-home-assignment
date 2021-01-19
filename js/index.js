@@ -76,15 +76,17 @@ $(document).ready(() => {
    });
 });
 
+/** Stage One : Render : First Name Field, Last Name Field */
 function renderStageOne(signInForm) {
    const firstNameField = generateFirstNameField((value) => {
       formState.firstName = value;
-      isStageOneFinish() && renderStageTwo();
+      isStageOneFinish() && renderStageTwo(signInForm);
    });
    const lastNameField = generateLastNameField((value) => {
       formState.lastName = value;
-      isStageOneFinish() && renderStageTwo();
+      isStageOneFinish() && renderStageTwo(signInForm);
    });
+
    signInForm.append([firstNameField, lastNameField]);
 
    function isStageOneFinish() {
@@ -92,6 +94,14 @@ function renderStageOne(signInForm) {
    }
 }
 
-function renderStageTwo() {
+/** Stage One : Render : Mobile Number Field, Mobile Prefix Field */
+function renderStageTwo(signInForm) {
    console.log('render stage 2 ');
+
+   const mobileNumField = generateMobileNumField((value) => {
+      formState.mobileNum = value;
+      console.log(formState);
+   });
+
+   signInForm.append([mobileNumField]);
 }
