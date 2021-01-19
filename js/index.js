@@ -85,6 +85,17 @@ function renderStageTwo(signInForm) {
    }
 }
 
+/** Stage Three : Render : Button -> validate mobile number */
 function renderStageThree(signInForm) {
-   console.log('render 3 ....');
+   const validateCodeButton = generateLoadingButton(onClickHandler);
+   signInForm.append(validateCodeButton);
+
+   function onClickHandler() {
+      renderStageFour(signInForm, validateCodeButton);
+   }
+}
+
+/** Stage Four : Render : Validation Code Input, Button -> validate mobile number */
+function renderStageFour(signInForm, validateCodeButton) {
+   console.log('4');
 }
