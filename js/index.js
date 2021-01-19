@@ -1,5 +1,4 @@
 const formState = {
-   firstName: '',
    lastName: '',
    mobileNum: '',
    mobilePre: '',
@@ -82,17 +81,14 @@ $(document).ready(() => {
 
 /** Stage One : Render : First Name Field, Last Name Field */
 function renderStageOne(signInForm) {
-   const firstNameField = generateFirstNameField((value) => {
-      formState.firstName = value;
-      isStageOneFinish() && renderStageTwo(signInForm);
-   });
-   const lastNameField = generateLastNameField((value) => {
-      formState.lastName = value;
-      isStageOneFinish() && renderStageTwo(signInForm);
-   });
-
+   const firstNameField = generateFirstNameField('firstName', onChangeHandler);
+   const lastNameField = generateLastNameField('lastName', onChangeHandler);
    signInForm.append([firstNameField, lastNameField]);
 
+   function onChangeHandler(name, value) {
+      formState[name] = value;
+      isStageOneFinish() && renderStageTwo(signInForm);
+   }
    function isStageOneFinish() {
       return formState.firstName && formState.lastName;
    }
