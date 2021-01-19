@@ -1,6 +1,15 @@
-// const inputmask = require('inputmask');
+const formState = {
+   firstName: '',
+   lastName: '',
+};
 
 $(document).ready(() => {
+   const signInForm = $('#sign-in-form');
+
+   renderStageOne(signInForm);
+   // firstNameField.on('change', function (e) {
+
+   // });
    $(':input').inputmask('');
 
    // $('h1').hide();
@@ -66,3 +75,23 @@ $(document).ready(() => {
       });
    });
 });
+
+function renderStageOne(signInForm) {
+   const firstNameField = generateFirstNameField((value) => {
+      formState.firstName = value;
+      isStageOneFinish() && renderStageTwo();
+   });
+   const lastNameField = generateLastNameField((value) => {
+      formState.lastName = value;
+      isStageOneFinish() && renderStageTwo();
+   });
+   signInForm.append([firstNameField, lastNameField]);
+
+   function isStageOneFinish() {
+      return formState.firstName && formState.lastName;
+   }
+}
+
+function renderStageTwo() {
+   console.log('render stage 2 ');
+}
