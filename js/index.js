@@ -73,6 +73,11 @@ function renderStageTwo(signInForm) {
    /** Functions */
    function onChangeHandler(name, value) {
       formState[name] = value;
+      if (name === 'mobileNum') {
+         isValidMobileNum(value)
+            ? renderValidator(mobileNumField, 'success')
+            : renderValidator(mobileNumField, 'invalid');
+      }
       isStageFinish() && renderStageThree(signInForm);
    }
    function isStageFinish() {

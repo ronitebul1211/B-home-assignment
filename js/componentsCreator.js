@@ -21,13 +21,31 @@ function generateMobileNumField(name, onChangeHandler) {
    return wrapper.append([icon, validationWrapper]);
 }
 
-/**  */
+/** Generate Text Input */
 function generateTextInput(type, placeholder, onChangeHandler, name) {
    const input = $('<input>', { type, placeholder });
    input.change(function () {
       onChangeHandler(name, $(this).val());
    });
    return input;
+}
+
+/** Render validator ui inside input field */
+function renderValidator(field, validationStatus) {
+   const validationWrapper = field.find('.validation-input-wrapper')[0];
+   if (!validationWrapper) {
+      throw Error("Can't render validator on input without validation wrapper");
+   }
+
+   switch (validationStatus) {
+      case 'success':
+      case 'invalid':
+      case 'complete':
+         $(validationWrapper).addClass(validationStatus);
+         break;
+      default:
+         throw Error('Invalid validation status');
+   }
 }
 
 function generateMobilePrefixField(name, options, defaultValue, onChangeHandler) {

@@ -8,3 +8,5 @@
    <br/>
    <br/>
 -  MobileView: because its small screen its possible to display the whole image without loosing ratio, is that ok?
+
+-  didn't send me X asset use instead red V
