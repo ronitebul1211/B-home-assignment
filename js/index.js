@@ -1,7 +1,11 @@
 const formState = {
    firstName: '',
    lastName: '',
+   mobileNum: '',
+   mobilePre: '',
 };
+
+//TODO : track stage state to prevent duplicate rendering
 
 $(document).ready(() => {
    const signInForm = $('#sign-in-form');
@@ -21,59 +25,59 @@ $(document).ready(() => {
    //    console.log('click event');
    // });
    $('#mobile-prefix').on('change', function (e) {
-      console.log($(this).val());
+      // console.log($(this).val());
    });
 
-   $('select').each(function () {
-      /** Hide original select element, create styled div that act as select, wrap both in select wrapper */
-      const originalSelect = $(this);
-      originalSelect.hide();
-      originalSelect.wrap('<div class="select-wrapper"></div>');
-      originalSelect.after('<div class="styled-select"></div>');
+   // $('select').each(function () {
+   //    /** Hide original select element, create styled div that act as select, wrap both in select wrapper */
+   //    const originalSelect = $(this);
+   //    originalSelect.hide();
+   //    originalSelect.wrap('<div class="select-wrapper"></div>');
+   //    originalSelect.after('<div class="styled-select"></div>');
 
-      /** Set text in styled select of selected option (default : first option)  */
-      const styledSelect = originalSelect.next('div.styled-select');
-      $('<span>', { text: originalSelect.find(':selected').text() }).appendTo(styledSelect);
-      $('<img>', { src: './assets/icon-point-down-arrow.svg' }).appendTo(styledSelect);
+   //    /** Set text in styled select of selected option (default : first option)  */
+   //    const styledSelect = originalSelect.next('div.styled-select');
+   //    $('<span>', { text: originalSelect.find(':selected').text() }).appendTo(styledSelect);
+   //    $('<img>', { src: './assets/icon-point-down-arrow.svg' }).appendTo(styledSelect);
 
-      /** Create list element inside select wrapper to contain styled options */
-      const styledOptions = $('<ul />', {
-         class: 'styled-options',
-      }).insertAfter(styledSelect);
+   //    /** Create list element inside select wrapper to contain styled options */
+   //    const styledOptions = $('<ul />', {
+   //       class: 'styled-options',
+   //    }).insertAfter(styledSelect);
 
-      originalSelect.children('option').each(function () {
-         const currentOption = $(this);
-         $('<li />', {
-            text: currentOption.text(),
-            value: currentOption.val(),
-         }).appendTo(styledOptions);
-      });
+   //    originalSelect.children('option').each(function () {
+   //       const currentOption = $(this);
+   //       $('<li />', {
+   //          text: currentOption.text(),
+   //          value: currentOption.val(),
+   //       }).appendTo(styledOptions);
+   //    });
 
-      /** Event Handler */
-      styledSelect.click(function (e) {
-         e.stopPropagation();
-         styledSelect.toggleClass('active');
-         styledOptions.toggle();
-      });
+   //    /** Event Handler */
+   //    styledSelect.click(function (e) {
+   //       e.stopPropagation();
+   //       styledSelect.toggleClass('active');
+   //       styledOptions.toggle();
+   //    });
 
-      styledOptions.children().click(function (e) {
-         e.stopPropagation();
-         const styledOptionItem = $(this);
-         styledSelect.children('span').text(styledOptionItem.text());
-         styledSelect.removeClass('active');
-         styledOptions.hide();
-         originalSelect.find(':selected').removeAttr('selected');
-         originalSelect
-            .find(`[value="${styledOptionItem.attr('value')}"]`)
-            .attr('selected', 'true')
-            .trigger('change');
-      });
+   //    styledOptions.children().click(function (e) {
+   //       e.stopPropagation();
+   //       const styledOptionItem = $(this);
+   //       styledSelect.children('span').text(styledOptionItem.text());
+   //       styledSelect.removeClass('active');
+   //       styledOptions.hide();
+   //       originalSelect.find(':selected').removeAttr('selected');
+   //       originalSelect
+   //          .find(`[value="${styledOptionItem.attr('value')}"]`)
+   //          .attr('selected', 'true')
+   //          .trigger('change');
+   //    });
 
-      $(document).click(function () {
-         styledSelect.removeClass('active');
-         styledOptions.hide();
-      });
-   });
+   //    $(document).click(function () {
+   //       styledSelect.removeClass('active');
+   //       styledOptions.hide();
+   //    });
+   // });
 });
 
 /** Stage One : Render : First Name Field, Last Name Field */
@@ -94,14 +98,42 @@ function renderStageOne(signInForm) {
    }
 }
 
-/** Stage One : Render : Mobile Number Field, Mobile Prefix Field */
+/** Stage Two : Render : Mobile Number Field, Mobile Prefix Field */
 function renderStageTwo(signInForm) {
    console.log('render stage 2 ');
 
    const mobileNumField = generateMobileNumField((value) => {
       formState.mobileNum = value;
-      console.log(formState);
+      formState.mobilePre === 'IL' && isValidMobileNum(formState.mobileNum) && renderStageThree(signInForm);
    });
 
-   signInForm.append([mobileNumField]);
+   const prefixOptions = [
+      {
+         value: 'IS',
+         text: '354+',
+      },
+      {
+         value: 'IL',
+         text: '972+',
+      },
+      {
+         value: 'JO',
+         text: '667+',
+      },
+      {
+         value: 'MO',
+         text: '564+',
+      },
+   ];
+
+   const selectMobilePrefixField = generateMobilePrefixField(prefixOptions, (value) => {
+      formState.mobilePre = value;
+      formState.mobilePre === 'IL' && isValidMobileNum(formState.mobileNum) && renderStageThree(signInForm);
+   });
+
+   signInForm.append([mobileNumField, selectMobilePrefixField]);
+}
+
+function renderStageThree(signInForm) {
+   console.log('render 3 ....');
 }

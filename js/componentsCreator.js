@@ -26,6 +26,68 @@ function generateMobileNumField(onChangeHandler) {
    return wrapper.append([icon, input]);
 }
 
-function generateMobilePrefixField() {}
+function generateMobilePrefixField(options, onChangeHandler) {
+   const originalSelect = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
 
-// pass in input to update validation ui
+   options.forEach((optionData) => {
+      const option = $('<option>', { value: optionData.value, text: optionData.text });
+      originalSelect.append(option);
+   });
+
+   ///////////////////////////////////////////////////////
+   /** Hide original select element, create styled div that act as select, wrap both in select wrapper */
+
+   originalSelect.hide();
+   originalSelect.wrap('<div class="select-wrapper"></div>');
+   originalSelect.after('<div class="styled-select"></div>');
+
+   /** Set text in styled select of selected option (default : first option)  */
+   const styledSelect = originalSelect.next('div.styled-select');
+   $('<span>', { text: originalSelect.find(':selected').text() }).appendTo(styledSelect);
+   $('<img>', { src: './assets/icon-point-down-arrow.svg' }).appendTo(styledSelect);
+
+   /** Create list element inside select wrapper to contain styled options */
+   const styledOptions = $('<ul />', {
+      class: 'styled-options',
+   }).insertAfter(styledSelect);
+
+   originalSelect.children('option').each(function () {
+      const currentOption = $(this);
+      $('<li />', {
+         text: currentOption.text(),
+         value: currentOption.val(),
+      }).appendTo(styledOptions);
+   });
+
+   /** Event Handler */
+   styledSelect.click(function (e) {
+      e.stopPropagation();
+      styledSelect.toggleClass('active');
+      styledOptions.toggle();
+   });
+
+   styledOptions.children().click(function (e) {
+      e.stopPropagation();
+      const styledOptionItem = $(this);
+      styledSelect.children('span').text(styledOptionItem.text());
+      styledSelect.removeClass('active');
+      styledOptions.hide();
+      originalSelect.find(':selected').removeAttr('selected');
+      originalSelect
+         .find(`[value="${styledOptionItem.attr('value')}"]`)
+         .attr('selected', 'true')
+         .trigger('change');
+   });
+
+   $(document).click(function () {
+      styledSelect.removeClass('active');
+      styledOptions.hide();
+   });
+
+   originalSelect.change(function (e) {
+      onChangeHandler($(this).val());
+   });
+
+   const wrapperRef = originalSelect.parent();
+   return wrapperRef;
+}
