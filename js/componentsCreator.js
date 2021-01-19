@@ -113,3 +113,15 @@ function generateMobilePrefixField(name, options, defaultValue, onChangeHandler)
    }
    return selectWrapper;
 }
+
+function generateLoadingButton(onClickHandler) {
+   const button = $('<button>', { id: 'btn-test', class: 'loading-button' });
+   const text = $('<span>', { text: 'אמת מספר' });
+   const spinner = $('<span>', { class: 'spinner' });
+   spinner.hide();
+   button.click(function (e) {
+      e.preventDefault();
+      onClickHandler();
+   });
+   return button.append([text, spinner]);
+}
