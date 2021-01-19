@@ -63,7 +63,7 @@ form {
 #mobile-number {
    grid-column: 1 / span 4;
 }
-#mobile-prefix {
+.select-wrapper {
    grid-column: 5 / span 2;
 }
 #test {

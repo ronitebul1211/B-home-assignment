@@ -27,14 +27,10 @@ input[type='number']::placeholder {
    cursor: pointer;
    display: inline-block;
    position: relative;
+   width: 100%;
 }
 
 .styled-select {
-   position: absolute;
-   top: 0;
-   right: 0;
-   bottom: 0;
-   left: 0;
    padding: 8px 8px 8px 6px;
    display: flex;
    align-items: center;
