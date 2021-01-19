@@ -1,10 +1,3 @@
-/** Side icon */
-function generateFirstNameField(name, onChangeHandler) {
-   const field = generateTextInput('first-name', name, 'text', 'שם פרטי', onChangeHandler);
-   addSideIconToTextInput(field, './assets/icon-user-gray.svg');
-   return field;
-}
-
 /** Basic */
 function generateLastNameField(name, onChangeHandler) {
    const field = generateTextInput('last-name', name, 'text', 'שם משפחה', onChangeHandler);

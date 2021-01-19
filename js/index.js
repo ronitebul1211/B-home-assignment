@@ -25,7 +25,10 @@ $(document).ready(() => {
 
 /** Stage One : Render : First Name Field, Last Name Field */
 function renderStageOne(signInForm) {
-   const firstNameField = generateFirstNameField('firstName', onChangeHandler);
+   // First Name Field
+   const firstNameField = generateTextInput('first-name', 'firstName', 'text', 'שם פרטי', onChangeHandler);
+   addSideIconToTextInput(firstNameField, './assets/icon-user-gray.svg');
+
    const lastNameField = generateLastNameField('lastName', onChangeHandler);
    signInForm.append([firstNameField, lastNameField]);
 
