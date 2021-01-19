@@ -53,7 +53,10 @@ form {
    column-gap: 16px;
    row-gap: 12px;
 }
-
+#sign-in-form--title {
+   grid-column: 1/ 20;
+   font-weight: 500;
+}
 #first-name {
    grid-column: 1 / 11;
 }
