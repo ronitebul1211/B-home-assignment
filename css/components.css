@@ -1,10 +1,11 @@
+/* Inputs With Icon Wrapper */
 .input-with-icon-wrapper {
    display: flex;
    align-items: center;
    gap: 6px;
 }
 
-/* Inputs Type: Text, Number */
+/* Inputs Type: Text, Number, Date(mask) */
 input[type='text'],
 input[type='number'] {
    width: 100%;
@@ -21,6 +22,17 @@ input[type='text']::placeholder,
 input[type='number']::placeholder {
    color: #959595;
 }
+input[data-inputmask="'alias': 'date'"]::selection {
+   text-align: start;
+   direction: ltr;
+   -webkit-touch-callout: none; /* iOS Safari */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   user-select: none; /* Non-prefixed version, currently
+                         supported by Chrome, Edge, Opera and Firefox */
+}
 
 /* Custom Select */
 .select-wrapper {
@@ -30,7 +42,6 @@ input[type='number']::placeholder {
    width: 100%;
    -webkit-tap-highlight-color: transparent;
 }
-
 .styled-select {
    padding: 8px 8px 8px 6px;
    display: flex;
@@ -49,7 +60,6 @@ input[type='number']::placeholder {
    user-select: none; /* Non-prefixed version, currently
                                  supported by Chrome, Edge, Opera and Firefox */
 }
-
 .styled-options {
    display: none; /* Initial */
    position: absolute;
@@ -73,12 +83,11 @@ input[type='number']::placeholder {
    background: #f3f3f4;
 }
 
-/* Custom Radio */
+/* Radio */
 .radio-custom {
    opacity: 0;
    position: absolute;
 }
-
 .radio-custom,
 .radio-custom-label {
    display: inline-block;
@@ -88,11 +97,9 @@ input[type='number']::placeholder {
    font-size: 14px;
    -webkit-tap-highlight-color: transparent;
 }
-
 .radio-custom-label {
    position: relative;
 }
-
 .radio-custom + .radio-custom-label:before {
    content: '';
    background: url(../assets/radio-unchecked.svg);
@@ -103,7 +110,6 @@ input[type='number']::placeholder {
    text-align: center;
    margin-inline-end: 6px;
 }
-
 .radio-custom:checked + .radio-custom-label:before {
    background: url(../assets/radio-checked.svg);
 }
@@ -118,7 +124,7 @@ input[type='number'] {
    -moz-appearance: textfield;
 }
 
-/* Mobile Input */
+/* Validation Indicator - Input Text Field */
 .validation-input-wrapper {
    width: 100%;
    position: relative;
@@ -179,18 +185,4 @@ input[type='number'] {
    100% {
       transform: rotate(360deg);
    }
-}
-
-/* Date */
-
-input[data-inputmask="'alias': 'date'"]::selection {
-   text-align: start;
-   direction: ltr;
-   -webkit-touch-callout: none; /* iOS Safari */
-   -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-   -moz-user-select: none; /* Old versions of Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
-   user-select: none; /* Non-prefixed version, currently
-                         supported by Chrome, Edge, Opera and Firefox */
 }
