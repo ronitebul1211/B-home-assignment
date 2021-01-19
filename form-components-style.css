@@ -28,6 +28,7 @@ input[type='number']::placeholder {
    display: inline-block;
    position: relative;
    width: 100%;
+   -webkit-tap-highlight-color: transparent;
 }
 
 .styled-select {
