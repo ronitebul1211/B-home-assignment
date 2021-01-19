@@ -26,11 +26,12 @@ function generateMobileNumField(onChangeHandler) {
    return wrapper.append([icon, input]);
 }
 
-function generateMobilePrefixField(options, onChangeHandler) {
+function generateMobilePrefixField(options, defaultValue, onChangeHandler) {
+   // Render original select
    const originalSelect = $('<select>', { id: 'mobile-prefix', name: 'mobile-prefix' });
-
    options.forEach((optionData) => {
       const option = $('<option>', { value: optionData.value, text: optionData.text });
+      optionData.value === defaultValue && option.attr('selected', 'true');
       originalSelect.append(option);
    });
 

@@ -125,8 +125,8 @@ function renderStageTwo(signInForm) {
          text: '564+',
       },
    ];
-
-   const selectMobilePrefixField = generateMobilePrefixField(prefixOptions, (value) => {
+   formState.mobilePre = 'IL'; // Default value
+   const selectMobilePrefixField = generateMobilePrefixField(prefixOptions, formState.mobilePre, (value) => {
       formState.mobilePre = value;
       formState.mobilePre === 'IL' && isValidMobileNum(formState.mobileNum) && renderStageThree(signInForm);
    });
