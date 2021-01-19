@@ -102,8 +102,26 @@ function renderStageThree(signInForm) {
    /** Functions */
    function onClickHandler() {
       renderStageFour(signInForm, validateCodeButton);
+      validateCodeButton.off();
    }
 }
 
 /** Stage Four : Render : Validation Code Input, Button -> validate mobile number */
-function renderStageFour(signInForm, validateCodeButton) {}
+function renderStageFour(signInForm, validateCodeButton) {
+   /** Create, Render UI */
+   const validationCodeField = generateTextInput(
+      'validation-code',
+      'validationCode',
+      'number',
+      'הכנס קוד אימות',
+      onChangeHandler,
+   );
+   addSideIconToTextInput(validationCodeField, './assets/icon-checked-gray.svg');
+   validationCodeField.insertBefore(validateCodeButton);
+   // signInForm.append([validationCodeField]);
+
+   /** Functions */
+   function onChangeHandler() {
+      console.log('ffsdfsd');
+   }
+}

@@ -109,13 +109,13 @@ function generateCustomSelect(id, name, options, defaultValue, onChangeHandler) 
    return selectWrapper;
 }
 
+/** Generate Loading Button */
 function generateLoadingButton(id, text, onClickHandler) {
-   const button = $('<button>', { id, class: 'loading-button' });
+   const button = $('<button>', { id, class: 'loading-button', type: 'button' });
    const textSpan = $('<span>', { text });
    const spinner = $('<span>', { class: 'spinner' });
    spinner.hide();
-   button.click(function (e) {
-      e.preventDefault();
+   button.on('click', function (e) {
       onClickHandler();
    });
    return button.append([textSpan, spinner]);
