@@ -66,13 +66,13 @@ form {
 #mobile-prefix {
    grid-column: 15 / 20;
 }
-#test {
+#first-radio {
    grid-column: 1 / 9;
 }
-#test1 {
+#second-radio {
    grid-column: 9 / 20;
 }
-#btn-test {
+#btn-validation {
    grid-column: 2 / 20;
 }
 #validation-code {

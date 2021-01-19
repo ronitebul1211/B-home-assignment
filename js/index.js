@@ -7,7 +7,9 @@ const formState = {
 $(document).ready(() => {
    const signInForm = $('#sign-in-form');
 
-   renderStageOne(signInForm);
+   // renderStageOne(signInForm);
+
+   renderStageFive(signInForm);
    // firstNameField.on('change', function (e) {
 
    // });
@@ -97,7 +99,7 @@ function renderStageTwo(signInForm) {
 /** Stage Three : Render : Button -> validate mobile number */
 function renderStageThree(signInForm) {
    /** Create, Render UI */
-   const validateCodeButton = generateLoadingButton('btn-test', 'אמת מספר', onClickHandler);
+   const validateCodeButton = generateLoadingButton('btn-validation', 'אמת מספר', onClickHandler);
    signInForm.append(validateCodeButton);
    /** Functions */
    function onClickHandler() {
@@ -139,5 +141,29 @@ function renderStageFour(signInForm, validateCodeButton) {
 
 /** Stage Five : Render :  */
 function renderStageFive(signInForm) {
-   console.log('renderStageFive');
+   /** Create, Render UI */
+   formState.identity = 'self';
+   const firstRadio = generateRadioButton(
+      'first-radio',
+      'self',
+      true,
+      'identity',
+      'ממלא עבור עצמי',
+      onChangeHandler,
+   );
+   const secondRadio = generateRadioButton(
+      'second-radio',
+      'child',
+      false,
+      'identity',
+      'ממלא עבור קטין',
+      onChangeHandler,
+   );
+   signInForm.append([firstRadio, secondRadio]);
+
+   /** Functions */
+   function onChangeHandler(name, value) {
+      formState[name] = value;
+      console.log(formState);
+   }
 }

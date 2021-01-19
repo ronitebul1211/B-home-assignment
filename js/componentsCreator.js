@@ -126,3 +126,15 @@ function renderLoader(button, isLoading) {
    const spinner = button.find('.spinner')[0];
    isLoading ? $(spinner).show() : $(spinner).hide();
 }
+
+/** Generate Radio Button */
+function generateRadioButton(id, value, checked, name, text, onChangeHandler) {
+   const field = $('<div>', { id });
+   const radioId = Date.now();
+   const input = $('<input>', { id: radioId, name, checked, type: 'radio', value, class: 'radio-custom' });
+   const label = $('<label>', { for: radioId, text, class: 'radio-custom-label' });
+   input.on('change', function () {
+      onChangeHandler(name, $(this).val());
+   });
+   return field.append([input, label]);
+}
