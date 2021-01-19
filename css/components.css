@@ -94,7 +94,7 @@ input[type='number']::placeholder {
 
 .radio-custom + .radio-custom-label:before {
    content: '';
-   background: url(./assets/radio-unchecked.svg);
+   background: url(../assets/radio-unchecked.svg);
    display: inline-block;
    vertical-align: middle;
    width: 18px;
@@ -104,7 +104,7 @@ input[type='number']::placeholder {
 }
 
 .radio-custom:checked + .radio-custom-label:before {
-   background: url(./assets/radio-checked.svg);
+   background: url(../assets/radio-checked.svg);
 }
 
 /* Input Type: Number - Hide arrows */
@@ -134,13 +134,13 @@ input[type='number'] {
    -ms-transform: translateY(-50%);
 }
 .success.validation-input-wrapper:before {
-   background-image: url('./assets/icon-checked-green.svg');
+   background-image: url('../assets/icon-checked-green.svg');
 }
 .invalid.validation-input-wrapper:before {
-   background-image: url('./assets/icon-checked-red.svg');
+   background-image: url('../assets/icon-checked-red.svg');
 }
 .complete.validation-input-wrapper:before {
-   background-image: url('./assets/icon-checked-blue.svg');
+   background-image: url('../assets/icon-checked-blue.svg');
 }
 
 /* Loading Button */

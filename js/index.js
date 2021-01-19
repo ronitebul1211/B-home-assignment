@@ -1,12 +1,9 @@
 const formState = {};
 let formStage = 1;
 
-//TODO : track stage state to prevent duplicate rendering
-
 $(document).ready(() => {
    const signInForm = $('#sign-in-form');
-   // renderStageOne(signInForm);
-   renderStageFive(signInForm);
+   renderStageOne(signInForm);
 });
 
 /** Stage One : Render : First Name Field, Last Name Field */
